@@ -20,11 +20,7 @@ def aws_session_factory(context, request):
     if request.registry.settings.get("aws.region") is not None:
         kwargs["region_name"] = request.registry.settings["aws.region"]
 
-    return boto3.session.Session(
-        aws_access_key_id=request.registry.settings["aws.key_id"],
-        aws_secret_access_key=request.registry.settings["aws.secret_key"],
-        **kwargs
-    )
+    return boto3.session.Session(**kwargs)
 
 
 def includeme(config):
